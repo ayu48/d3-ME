@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <h1>Heat Map</h1>
+        <h5>or tried too ... </h5>
+        <script>
+            var w = 500;
+            var h = 500;
+            var dataset = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+
+            var svg = d3.selectAll("body")
+                            .append("svg")
+                            .attr("width", w)
+                            .attr("height", h);
+                                    
+            svg.selectAll("rect")
+                    .data(dataset)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d, i) {
+                        return (i % 5) * (w / 5)
+                    })
+                    .attr("y", function(d, i) {
+                        return Math.floor(i/5) * (h / 5);
+                    })
+                    .attr("width", w / 5)
+                    .attr("height", w / 5)
+                    .attr("fill", "teal")
+                    .attr("stroke", "white");
+
+        </script>
+    </body>
+</html>
