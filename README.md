@@ -8,3 +8,8 @@ add to html:
 ```
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 ```
+
+=
+###Reference
+* visualization (o'reilly): http://chimera.labs.oreilly.com/books/1230000000345
+* d3 animation tutorial: http://christopheviau.com/d3_tutorial/
