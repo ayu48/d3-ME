@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="heat-map2.css">
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <script>
+            var w = 800;
+            var h = 500;
+            var svg = d3.selectAll("body")
+                            .append("svg")
+                            .attr("width", w)
+                            .attr("height", h)
+                            .attr("id", "svg");
+            // today info
+            var today = new Date();
+            var thisMonth = today.getMonth() + 1;
+            var thisYear = today.getFullYear();
+
+            // month
+            svg.append("text")
+                .text(thisMonth)
+                .attr("x", 20)
+                .attr("y", 70)
+                .attr("font-size", "70px");
+
+            // days of week
+            var daysOfWeek = ['S', 'M', 'T', 'W', 'T' , 'F', 'S'];
+            svg.selectAll("text")
+                .data(daysOfWeek)
+                .enter()
+                .append("text")
+                .text(function(d){ return d; })
+                .attr('x', function(d, i) {
+                    console.log(d);
+                    return i * (w/7);
+                })
+                .attr('y', 100);
+
+            // grid
+            var dataset = [];
+            for (var i = 1; i <= daysInMonth(thisMonth, thisYear); i++) {
+                dataset.push(i);
+            }
+
+            svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("text")
+                .text(function(d){ return d; })
+                //FIX: x y positions
+                .attr('x', function(d, i) {
+                    return i%7 * (w/7);
+                })
+                .attr('y', function(d, i) {
+                    return Math.floor(i/7) * (h/7) + 150;
+                });
+
+            function daysInMonth(month, year) {
+                return new Date(year, month, 0).getDate();
+            }
+        </script>
+    </body>
+</html>
