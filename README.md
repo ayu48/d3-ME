@@ -13,3 +13,4 @@ add to html:
 ###Reference
 * visualization (o'reilly): http://chimera.labs.oreilly.com/books/1230000000345
 * d3 animation tutorial: http://christopheviau.com/d3_tutorial/
+* element grouping: https://www.dashingd3js.com/svg-group-element-and-d3js
