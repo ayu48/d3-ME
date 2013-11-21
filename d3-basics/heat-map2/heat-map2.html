@@ -26,26 +26,25 @@
                 .attr("font-size", "70px");
 
             // days of week
-            var daysOfWeek = ['S', 'M', 'T', 'W', 'T' , 'F', 'S'];
+            var days = ['S', 'M', 'T', 'W', 'T' , 'F', 'S'];
             svg.selectAll("text")
-                .data(daysOfWeek)
+                .data(days, function(d, i) { return d + i })
                 .enter()
                 .append("text")
-                .text(function(d){ return d; })
+                .text(function(d){ return d })
                 .attr('x', function(d, i) {
-                    console.log(d);
                     return i * (w/7);
                 })
                 .attr('y', 100);
 
             // grid
-            var dataset = [];
+            var dayNum = [];
             for (var i = 1; i <= daysInMonth(thisMonth, thisYear); i++) {
-                dataset.push(i);
+                dayNum.push(i);
             }
 
-            svg.selectAll("rect")
-                .data(dataset)
+            svg.selectAll("text")
+                .data(dayNum, function(d , i) { return d + i })
                 .enter()
                 .append("text")
                 .text(function(d){ return d; })
