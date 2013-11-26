@@ -3,6 +3,9 @@
     <head>
         <link rel="stylesheet" type="text/css" href="heat-map2.css">
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <!--
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" charset="utf-8"></script>
+        -->
     </head>
     <body>
         <script>
@@ -53,6 +56,12 @@
                     return i * (calWidth/7) + (calMargin + calWidth/7/2);
                 })
                 .attr('y', 150);
+
+            // read file
+            //FIX! can't do cross origin requests with chrome
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/Users/ayuishii/Projects/d3-ME/d3-basics/heat-map2/morning-time.txt", true);
+            xhr.send();
 
             // days
             var dayNum = [];
