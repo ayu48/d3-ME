@@ -17,6 +17,7 @@ https://github.com/mbostock/d3
 
 #####Other
 * [stock graph](http://blueteeth48.github.io/d3-ME/stock/stock.html)
+* [stock graph2](http://blueteeth48.github.io/d3-ME/stock2/stock.html)
 
 ##Reference
 * visualization (o'reilly): http://chimera.labs.oreilly.com/books/1230000000345
