@@ -20,7 +20,7 @@ function showVanguardStock() {
     var yAxis = d3.svg.axis().scale(y).orient("left");
 
     var line = d3.svg.line()
-        .x(function(d) {console.log(d);return x(d.Date);})
+        .x(function(d) {return x(d.Date);})
         .y(function(d) {return y(d.Close);});
 
     var svg = d3.select('body').append('svg')
@@ -59,7 +59,7 @@ function showVanguardStock() {
             .attr("class", "line")
             .attr("d", line);
     });
-}
+};
 
 function getStock(opts, type, complete) {
     var defs = {
@@ -97,4 +97,4 @@ function getStock(opts, type, complete) {
         }
         complete(err, !err && data.query.results);
     });
-}
+};
