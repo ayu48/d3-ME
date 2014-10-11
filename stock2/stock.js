@@ -34,18 +34,19 @@ function showGraph() {
         .orient("left")
         .tickSize(-width);
 
+    /*
     var zoom = d3.behavior.zoom()
         .x(x)
         .y(y)
         .scaleExtent([1, 5])
         .on("zoom", zoomed);
+    */
 
     var svg = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        .call(zoom);
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     svg.append("rect")
         .attr("width", width)
@@ -79,16 +80,29 @@ function showGraph() {
 
     getStock({stock: 'VTI', startDate: formatDate(lastYearToday), endDate: formatDate(today)}, 'historicaldata', function(err, data) {
         var quotes = data.quote;
+        quotes.reverse();
+
         quotes.forEach(function(d) {
             d.Date = parseDate(d.Date);
             d.Close =+ d.Close;
         });
 
-        svg.append('path')
+        y.domain(d3.extent(quotes, function(d) { return d.Close;}))
+        var svgTrans = d3.select("body").transition();
+        svgTrans.select(".y.axis").duration(750).call(yAxis);
+
+        var path = svg.append('path')
             .datum(quotes)
             .attr('class', 'line')
             .attr('d', line)
             .attr("clip-path", "url(#clip)");
+
+        var totalLength = path.node().getTotalLength();
+        path.attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+            .duration(1500)
+            .attr("stroke-dashoffset", 0);
     });
 }
 
