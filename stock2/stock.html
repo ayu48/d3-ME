@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <head>
+    <link href="../public/css/bootstrap.min.css" rel="stylesheet">
     <link href="stock.css" rel="stylesheet">
-    <script src="../js/jquery-1.11.1.min.js"></script>
-    <script src="../js/d3.v3.min.js"></script>
+    <script src="../public/js/jquery-1.11.1.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/d3.v3.min.js"></script>
     <script src="stock.js"></script>
 </head>
 <body>
+    <div class="content">
+        <div class="container">
+            <div id="graph" class="col-lg-12">
+            </div>
+        </div>
+        <div class="container">
+            <div id="button-section" class="col-lg-12 text-center">
+                <button type="button" class="stock-type btn btn-default" symbol="VTI">Vanguard Total Stock Market (VTI)</button>
+                <button type="button" class="stock-type btn btn-default" symbol="GOOG">Google Inc.</button>
+                <button type="button" class="stock-type btn btn-default" symbol="3632">GREE (TYO:3632)</button>
+                <button type="button" class="stock-type btn btn-default" symbol="2432">DeNA (TYO:2432)</button>
+            </div>
+            <script>
+                $('.stock-type').on('click', getStockBySymbol);
+            </script>
+        </div>
+    </div>
 </body>

@@ -2,12 +2,9 @@ body {
     font: 10px sans-serif;
 }
 
-svg {
-    shape-rendering: crispEdges;
-}
-
 rect {
-    fill: #ddd;
+    fill: #15BEBF;
+    opacity: 0.2;
 }
 
 .axis path, .axis line {
@@ -17,7 +14,8 @@ rect {
 
 .line {
     fill: none;
-    stroke: steelblue;
+    stroke: #15BEBF;
     stroke-width: 3px;
+    opacity: 0.8;
 }
 
