@@ -3,7 +3,7 @@ body {
 }
 
 rect {
-    fill: #15BEBF;
+    fill: #4E8899;
     opacity: 0.2;
 }
 
@@ -14,8 +14,11 @@ rect {
 
 .line {
     fill: none;
-    stroke: #15BEBF;
+    stroke: #31b0d5;
     stroke-width: 3px;
     opacity: 0.8;
 }
 
+.row {
+    margin-bottom: 15px;
+}
