@@ -16,20 +16,34 @@
             width: 20px;
             height: 75px;
             margin-right: 2px;
-            background-color: teal;
+            fill: teal;
         }
     </style>
     <body>
+        <div id="charArea"></div>
         <script type="text/javascript">
             var dataset = [5, 10, 15, 20, 25]
 
-            d3.select('body').selectAll('div')
+            var svg = d3.select('#charArea').append('svg')
+                .attr('width', 400)
+                .attr('height', 300);
+
+            var multiplier = 8;
+
+            svg.selectAll('rect')
                 .data(dataset)
                 .enter()
-                .append('div')
+                .append('rect')
                 .attr('class', 'bar')
-                .style('height', function(d) {
-                    return d * 7 + 'px';
+                .attr('x', function(d, i) {
+                    return i * 22;
+                })
+                .attr('y', function(d, i) {
+                    return 300 - d * multiplier;
+                })
+                .attr('width', 20)
+                .attr('height', function(d) {
+                    return d * multiplier;
                 });
         </script>
     </body>
