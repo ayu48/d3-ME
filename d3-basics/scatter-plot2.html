@@ -8,8 +8,9 @@
     </head>
     <style>
         body {
-            padding-top: 50px;
-            padding-left: 100px;
+            padding-top: 20px;
+            padding-left: 15px;
+            font-family: Helvetica;
         }
 
         svg {
@@ -31,6 +32,13 @@
             fill: magenta;
             fill-opacity: 0.7;
             stroke-width: 3px;
+        }
+
+        .axis path, .axis line{
+            fill: none;
+            stroke: #000;
+            stroke-width: 1px;
+            shape-rendering: crispEdges;
         }
     </style>
     <body>
@@ -73,8 +81,9 @@
                     r: Math.random() * 30,
                 };
             });
+            dataset.push({x: 0, y: 0, r: 10});
 
-            var margin = {top: 0, right: 0, bottom: 0, left: 0};
+            var margin = {top: 20, right: 20, bottom: 40, left: 40};
             var w = 400 - margin.left - margin.right;
             var h = 300 - margin.top - margin.bottom;
 
@@ -88,11 +97,30 @@
                 .domain([0, 100])
                 .range([0, w]);
 
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .ticks(5);
+
+            svg.append('g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0, ' + h +')')
+                .call(xAxis)
+
             var yScale = d3.scale.linear()
                 .domain([0, d3.max(dataset, function(d) {
                     return d.y
                 })])
-                .range([0, h]);
+                .range([h, 0]);
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left');
+
+            svg.append('g')
+                .attr('class', 'y axis')
+                .attr('transform', 'translate(0, 0)')
+                .call(yAxis)
 
             var colorScale = d3.scale.quantile()
                 .domain([0, 10, dataset.length - 10, dataset.length])
